@@ -20,6 +20,10 @@ export default function App() {
     setEmail("");
   }
 
+  function removeGuest(id) {
+    setGuest(guests.filter((guest) => guest.id !== id));
+  }
+
   return (
     <div>
       <h1>Company Picninc RSVP</h1>
@@ -47,11 +51,13 @@ export default function App() {
       </form>
 
       <h2>Guest List</h2>
-      {guests.map(guest => (
-        <p key={guest.id}>
-          {guest.name} {guest.email}
-        </p>
-      ))}
+        {guests.map(guest => (
+          <p key={guest.id}>
+            {guest.name} {guest.email}
+            <button onClick={() => removeGuest(guest.id)}>Remove</button>
+          </p>
+        ))}
+      <button></button>
       
       <p>Name: {name}</p>
       <p>Email: {email}</p>
