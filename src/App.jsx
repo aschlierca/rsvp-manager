@@ -4,12 +4,27 @@ import './App.css'
 export default function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [guests, setGuest] = useState([])
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newGuest = {
+      id: Date.now(),
+      name: name,
+      email: email,
+    };
+
+    setGuest([...guests, newGuest]);
+    setName("");
+    setEmail("");
+  }
 
   return (
     <div>
       <h1>Company Picninc RSVP</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Name
           <input
@@ -31,6 +46,13 @@ export default function App() {
         <button type="submit">Add Guest</button>
       </form>
 
+      <h2>Guest List</h2>
+      {guests.map(guest => (
+        <p key={guest.id}>
+          {guest.name} {guest.email}
+        </p>
+      ))}
+      
       <p>Name: {name}</p>
       <p>Email: {email}</p>
     </div>
