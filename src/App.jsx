@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import GuestList from './GuestList.jsx'
 
 export default function App() {
   const [name, setName] = useState("");
@@ -51,12 +52,10 @@ export default function App() {
       </form>
 
       <h2>Guest List</h2>
-        {guests.map(guest => (
-          <p key={guest.id}>
-            {guest.name} {guest.email}
-            <button onClick={() => removeGuest(guest.id)}>Remove</button>
-          </p>
-        ))}
+      <GuestList
+        guests={guests}
+        onRemove={removeGuest}
+        />
       <button></button>
       
       <p>Name: {name}</p>
